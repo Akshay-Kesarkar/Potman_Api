@@ -44,7 +44,24 @@ def test3():
         result =print("Table Created!!")
         return jsonify((str(result)))
 
-@app.route('aksh/datatable/call', methods=["GET","POST"])
+@app.route('/aksh/datatable/call', methods=["GET","POST"])
+def test4():
+    if(request.method=='POST'):
+        import mysql.connector as connection
+        import sqlalchemy
+        import mysql
+        import pymysql
+        import pandas as pd
+        mydb = connection.connect(host="localhost", database='Attribute_DataSet1', user="root", passwd="1234",
+                                  use_pure=True)
+
+        cursor = mydb.cursor()
+        mydb.close()
+        engine1 = request.json['d']
+        engine = sqlalchemy.create_engine(engine1)
+        data1 = pd.read_sql_table('attribute_dataset', engine)
+        result = data1
+        return jsonify(result)
 
 
 
