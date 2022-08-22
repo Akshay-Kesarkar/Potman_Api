@@ -17,6 +17,7 @@ def test2():
         b = request.json['num2']
         result = a * b
         return jsonify((str(result)))
+
 @app.route('/abc1/sudh/test',methods=['GET' , 'POST'])
 def test3():
     if (request.method == 'POST'):
